@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript,node.js," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="简介刚开始接触vue-cli，发现用它生成的框架代码是缺少Mock模拟的，于是自己摸索了许久，将自己的摸索的结果通过过程记录下来，希望对别人有所帮助，能少走弯路。 这不是关于vue-cli的，是单纯的模拟数据服务这不是关于vue-cli的，是单纯的模拟数据服务这不是关于vue-cli的，是单纯的模拟数据服务 同时希望获得更好的解决方案，有更好方案的不要吝啬分享啊。 实现目标 1.ajax数据模拟，">
+<meta name="keywords" content="javascript,node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搭建简单的伪热更新Mock服务">
+<meta property="og:url" content="http://superluminalsnails.github.io/2018/01/04/搭建简单的伪热更新Mock服务/index.html">
+<meta property="og:site_name" content="SuperluminalSnails&#39;s Blog">
+<meta property="og:description" content="简介刚开始接触vue-cli，发现用它生成的框架代码是缺少Mock模拟的，于是自己摸索了许久，将自己的摸索的结果通过过程记录下来，希望对别人有所帮助，能少走弯路。 这不是关于vue-cli的，是单纯的模拟数据服务这不是关于vue-cli的，是单纯的模拟数据服务这不是关于vue-cli的，是单纯的模拟数据服务 同时希望获得更好的解决方案，有更好方案的不要吝啬分享啊。 实现目标 1.ajax数据模拟，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://sfault-image.b0.upaiyun.com/109/501/1095013215-5a4d09bb30eb2_articlex">
+<meta property="og:image" content="https://sfault-image.b0.upaiyun.com/284/675/2846756757-5a4d0a2dcd040_articlex">
+<meta property="og:image" content="https://sfault-image.b0.upaiyun.com/139/796/1397966202-5a4d0a655ef15_articlex">
+<meta property="og:image" content="https://sfault-image.b0.upaiyun.com/345/367/3453672785-5a4d0a71d3a5e_articlex">
+<meta property="og:image" content="https://sfault-image.b0.upaiyun.com/477/770/477770641-5a4d0a94009bf_articlex">
+<meta property="og:image" content="https://sfault-image.b0.upaiyun.com/360/006/3600067269-5a4d0ac9d2c9c_articlex">
+<meta property="og:image" content="https://sfault-image.b0.upaiyun.com/524/545/524545307-5a4d0aee7a0c3_articlex">
+<meta property="og:updated_time" content="2018-04-21T13:40:42.728Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="搭建简单的伪热更新Mock服务">
+<meta name="twitter:description" content="简介刚开始接触vue-cli，发现用它生成的框架代码是缺少Mock模拟的，于是自己摸索了许久，将自己的摸索的结果通过过程记录下来，希望对别人有所帮助，能少走弯路。 这不是关于vue-cli的，是单纯的模拟数据服务这不是关于vue-cli的，是单纯的模拟数据服务这不是关于vue-cli的，是单纯的模拟数据服务 同时希望获得更好的解决方案，有更好方案的不要吝啬分享啊。 实现目标 1.ajax数据模拟，">
+<meta name="twitter:image" content="https://sfault-image.b0.upaiyun.com/109/501/1095013215-5a4d09bb30eb2_articlex">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://superluminalsnails.github.io/2018/01/04/搭建简单的伪热更新Mock服务/"/>
+
+
+
+
+
+  <title>搭建简单的伪热更新Mock服务 | SuperluminalSnails's Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?91cbfc023ccdc73d79429e21d6dea90e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SuperluminalSnails's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://superluminalsnails.github.io/2018/01/04/搭建简单的伪热更新Mock服务/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SuperluminalSnails">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SuperluminalSnails's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">搭建简单的伪热更新Mock服务</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-04T22:04:16+08:00">
+                2018-01-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/01/04/搭建简单的伪热更新Mock服务/" class="leancloud_visitors" data-flag-title="搭建简单的伪热更新Mock服务">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>刚开始接触vue-cli，发现用它生成的框架代码是缺少Mock模拟的，于是自己摸索了许久，将自己的摸索的结果通过过程记录下来，希望对别人有所帮助，能少走弯路。</p>
+<p><code>这不是关于vue-cli的，是单纯的模拟数据服务</code><br><code>这不是关于vue-cli的，是单纯的模拟数据服务</code><br><code>这不是关于vue-cli的，是单纯的模拟数据服务</code></p>
+<p>同时希望获得更好的解决方案，有更好方案的不要吝啬分享啊。</p>
+<h1 id="实现目标"><a href="#实现目标" class="headerlink" title="实现目标"></a>实现目标</h1><ul>
+<li>1.ajax数据模拟，灵活的接口配置</li>
+<li>2.热更新（不用手动重启mock的服务，自动重启不知道算不算O(∩_∩)O哈哈~）</li>
+</ul>
+<a id="more"></a>
+<h1 id="搭建"><a href="#搭建" class="headerlink" title="搭建"></a>搭建</h1><p>过程变化</p>
+<ul>
+<li>1.简单mock服务</li>
+<li>2.可配置的mock服务</li>
+<li>3.热更新的可配置的mock服务</li>
+</ul>
+<h2 id="简单mock服务"><a href="#简单mock服务" class="headerlink" title="简单mock服务"></a>简单mock服务</h2><h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p>project</p>
+<ul>
+<li>node_modules</li>
+<li>mockServer.js</li>
+<li>package.json</li>
+</ul>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>用到的node_modules</p>
+<ul>
+<li>express</li>
+<li>mockjs</li>
+</ul>
+<p>代码如下<code>mockServer.js</code><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>); <span class="comment">//引入express模块</span></span><br><span class="line"><span class="keyword">const</span> Mock = <span class="built_in">require</span>(<span class="string">'mockjs'</span>); <span class="comment">//引入mock模块</span></span><br><span class="line"><span class="keyword">const</span> app = express(); <span class="comment">//实例化express</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 路由api对应的模拟数据</span></span><br><span class="line">app.all(<span class="string">'/api'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line"><span class="comment">// mockjs中属性名‘|’符号后面的属性为随机属性，数组对象后面的随机属性为随机数组数量，正则表达式表示随机规则，+1代表自增</span></span><br><span class="line"></span><br><span class="line">  res.json(Mock.mock(&#123;</span><br><span class="line">    <span class="string">"status"</span>: <span class="number">200</span>,</span><br><span class="line">    <span class="string">"data|1-9"</span>: [&#123;</span><br><span class="line">      <span class="string">"name|5-8"</span>: <span class="regexp">/[a-zA-Z]/</span>,</span><br><span class="line">      <span class="string">"id|+1"</span>: <span class="number">1</span>,</span><br><span class="line">      <span class="string">"value|0-500"</span>: <span class="number">20</span></span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 监听8090端口</span></span><br><span class="line">app.listen(<span class="string">'8090'</span>);</span><br></pre></td></tr></table></figure></p>
+<h3 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h3><p><img src="https://sfault-image.b0.upaiyun.com/109/501/1095013215-5a4d09bb30eb2_articlex" alt="图片描述"></p>
+<hr>
+<h2 id="可配置的mock服务"><a href="#可配置的mock服务" class="headerlink" title="可配置的mock服务"></a>可配置的mock服务</h2><p>最简单的mock服务实现了，但是想想加入后期接口数量增加，那代码函数岂不是函数式增长!!!∑(ﾟДﾟノ)ノ。还能不能愉快的维护了。</p>
+<p>所以改良版就来了，这里我通过多个json文件来模拟多个请求的数据，通过一个配置文件来映射文件和接口</p>
+<p>用到的模块</p>
+<ul>
+<li>express</li>
+<li>mockjs</li>
+<li>path</li>
+<li>fs</li>
+</ul>
+<h3 id="目录结构-1"><a href="#目录结构-1" class="headerlink" title="目录结构"></a>目录结构</h3><p><img src="https://sfault-image.b0.upaiyun.com/284/675/2846756757-5a4d0a2dcd040_articlex" alt="图片描述"></p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><p><code>mockServer.js</code><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>); <span class="comment">//引入express模块</span></span><br><span class="line"><span class="keyword">const</span> Mock = <span class="built_in">require</span>(<span class="string">'mockjs'</span>); <span class="comment">//引入mock模块</span></span><br><span class="line"><span class="keyword">const</span> app = express(); <span class="comment">//实例化express</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">"path"</span>); <span class="comment">//引入path模块 核心模块不许要npm</span></span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>); <span class="comment">// 引入fs模块 核心模块不许要npm</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 读取配置文件 将路由和文件对应上</span></span><br><span class="line">fs.readFile(__dirname + <span class="string">'/test/conf.json'</span>, <span class="string">'utf-8'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (err) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> dataObject = <span class="built_in">JSON</span>.parse(data);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> dataObject) &#123;</span><br><span class="line">      app.all(dataObject[key].url, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">        fs.readFile(path.join(__dirname + <span class="string">'/test'</span>, dataObject[key].path), <span class="string">'utf-8'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">if</span> (err) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(err);</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            res.json(Mock.mock(<span class="built_in">JSON</span>.parse(data)));</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 监听8090端口</span></span><br><span class="line">app.listen(<span class="string">'8090'</span>);</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p><code>conf.json</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;api1&quot;:&#123;</span><br><span class="line">    &quot;url&quot;:&quot;/api1&quot;,</span><br><span class="line">    &quot;path&quot;:&quot;./api1/api1.json&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;api2&quot;:&#123;</span><br><span class="line">    &quot;url&quot;: &quot;/api2&quot;,</span><br><span class="line">    &quot;path&quot;: &quot;./api2/api2.json&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p><code>api1.json</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;data&quot;:&quot;i am api1&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p><code>api2.json</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;api2&quot;:&quot;hahah&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="运行结果-1"><a href="#运行结果-1" class="headerlink" title="运行结果"></a>运行结果</h3><p><img src="https://sfault-image.b0.upaiyun.com/139/796/1397966202-5a4d0a655ef15_articlex" alt="图片描述"></p>
+<p><img src="https://sfault-image.b0.upaiyun.com/345/367/3453672785-5a4d0a71d3a5e_articlex" alt="图片描述"></p>
+<h2 id="热更新的可配置的mock服务"><a href="#热更新的可配置的mock服务" class="headerlink" title="热更新的可配置的mock服务"></a>热更新的可配置的mock服务</h2><p>经过上面的修改，终于不用写那么多行代码了O(∩<em>∩)O哈哈~<br>但是人（我）是很懒的生物，如果每次改个配置文件，改个模拟数据文件手动重启才能生效岂不是好累<br>所以我们来模拟一下热更新，有木有好高大上的感觉O(∩</em>∩)O哈哈~</p>
+<h3 id="目录结构-2"><a href="#目录结构-2" class="headerlink" title="目录结构"></a>目录结构</h3><p><img src="https://sfault-image.b0.upaiyun.com/477/770/477770641-5a4d0a94009bf_articlex" alt="图片描述"></p>
+<p>你没有看错，就添加了一个<code>mockStart.js</code>文件而已哦</p>
+<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><p>这里借用了<code>nodemon</code>来检检测json文件，然后重启mock服务</p>
+<p><code>mockStart.js</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">var nodemon = require(&apos;nodemon&apos;); //引入nodemon模块</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * script 重启的脚本</span><br><span class="line"> * ext 检测的文件</span><br><span class="line"> */</span><br><span class="line">nodemon(&#123;</span><br><span class="line">  script: &apos;mockServer.js&apos;,</span><br><span class="line">  ext: &apos;json&apos;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">nodemon.on(&apos;start&apos;, function () &#123;</span><br><span class="line">  console.log(&apos;mockServer has started&apos;);</span><br><span class="line">&#125;).on(&apos;quit&apos;, function () &#123;</span><br><span class="line">  console.log(&apos;mockServer has quit&apos;);</span><br><span class="line">  process.exit();</span><br><span class="line">&#125;).on(&apos;restart&apos;, function (files) &#123;</span><br><span class="line">  console.log(&apos;mockServer restarted due to: &apos;, files);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="运行结果-2"><a href="#运行结果-2" class="headerlink" title="运行结果"></a>运行结果</h3><p>还是熟悉的接口，还是不一样的味（数）道（据），我没有手动重启服务哦O(∩_∩)O哈哈~，是不是很方便。<br><img src="https://sfault-image.b0.upaiyun.com/360/006/3600067269-5a4d0ac9d2c9c_articlex" alt="图片描述"><br><img src="https://sfault-image.b0.upaiyun.com/524/545/524545307-5a4d0aee7a0c3_articlex" alt="图片描述"></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a href="https://github.com/nuysoft/Mock/wiki" target="_blank" rel="noopener">https://github.com/nuysoft/Mock/wiki</a></li>
+<li><a href="https://github.com/remy/nodemon/blob/master/doc/requireable.md" target="_blank" rel="noopener">https://github.com/remy/nodemon/blob/master/doc/requireable.md</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+            <a href="/tags/node-js/" rel="tag"># node.js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/14/window下git多账户管理/" rel="next" title="window下git多账户管理">
+                <i class="fa fa-chevron-left"></i> window下git多账户管理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/12/同源、cookie、域名/" rel="prev" title="同源、cookie、域名">
+                同源、cookie、域名 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="SuperluminalSnails" />
+          <p class="site-author-name" itemprop="name">SuperluminalSnails</p>
+           
+              <p class="site-description motion-element" itemprop="description">知行合一</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现目标"><span class="nav-number">2.</span> <span class="nav-text">实现目标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#搭建"><span class="nav-number">3.</span> <span class="nav-text">搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单mock服务"><span class="nav-number">3.1.</span> <span class="nav-text">简单mock服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目录结构"><span class="nav-number">3.1.1.</span> <span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">3.1.2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行结果"><span class="nav-number">3.1.3.</span> <span class="nav-text">运行结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可配置的mock服务"><span class="nav-number">3.2.</span> <span class="nav-text">可配置的mock服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目录结构-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-1"><span class="nav-number">3.2.2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行结果-1"><span class="nav-number">3.2.3.</span> <span class="nav-text">运行结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#热更新的可配置的mock服务"><span class="nav-number">3.3.</span> <span class="nav-text">热更新的可配置的mock服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目录结构-2"><span class="nav-number">3.3.1.</span> <span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-2"><span class="nav-number">3.3.2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行结果-2"><span class="nav-number">3.3.3.</span> <span class="nav-text">运行结果</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SuperluminalSnails</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("LuKMMR2xr1RBBi7n7J6MTWXk-gzGzoHsz", "c6dTw0KOwAoWlDeAyQjwg2Rq");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
