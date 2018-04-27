@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="如何配置一个git账户（还没有设置过git账户）基本流程：设置git用户名和邮箱–&amp;gt;生成SSH Key–&amp;gt;添加公钥到git服务器（github或gitlab等） 设置git用户名和邮箱12git config --global user.name &amp;quot;用户名&amp;quot;git config --global user.email &amp;quot;邮箱&amp;quot; 注意git con">
+<meta name="description" content="如何配置一个git账户（还没有设置过git账户）基本流程：设置git用户名和邮箱–&amp;gt;生成SSH Key–&amp;gt;添加公钥到git服务器（github或gitlab等） 设置git用户名和邮箱12git config --global user.name &amp;quot;用户名&amp;quot;git config --global user.email &amp;quot;邮箱&amp;quot;">
 <meta name="keywords" content="git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="window下git多账户管理">
 <meta property="og:url" content="http://superluminalsnails.github.io/2017/12/14/window下git多账户管理/index.html">
 <meta property="og:site_name" content="SuperluminalSnails&#39;s Blog">
-<meta property="og:description" content="如何配置一个git账户（还没有设置过git账户）基本流程：设置git用户名和邮箱–&amp;gt;生成SSH Key–&amp;gt;添加公钥到git服务器（github或gitlab等） 设置git用户名和邮箱12git config --global user.name &amp;quot;用户名&amp;quot;git config --global user.email &amp;quot;邮箱&amp;quot; 注意git con">
+<meta property="og:description" content="如何配置一个git账户（还没有设置过git账户）基本流程：设置git用户名和邮箱–&amp;gt;生成SSH Key–&amp;gt;添加公钥到git服务器（github或gitlab等） 设置git用户名和邮箱12git config --global user.name &amp;quot;用户名&amp;quot;git config --global user.email &amp;quot;邮箱&amp;quot;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-21T13:38:33.070Z">
+<meta property="og:updated_time" content="2018-04-25T16:43:05.416Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="window下git多账户管理">
-<meta name="twitter:description" content="如何配置一个git账户（还没有设置过git账户）基本流程：设置git用户名和邮箱–&amp;gt;生成SSH Key–&amp;gt;添加公钥到git服务器（github或gitlab等） 设置git用户名和邮箱12git config --global user.name &amp;quot;用户名&amp;quot;git config --global user.email &amp;quot;邮箱&amp;quot; 注意git con">
+<meta name="twitter:description" content="如何配置一个git账户（还没有设置过git账户）基本流程：设置git用户名和邮箱–&amp;gt;生成SSH Key–&amp;gt;添加公钥到git服务器（github或gitlab等） 设置git用户名和邮箱12git config --global user.name &amp;quot;用户名&amp;quot;git config --global user.email &amp;quot;邮箱&amp;quot;">
 
 
 
@@ -363,6 +363,7 @@
       
         <h1 id="如何配置一个git账户（还没有设置过git账户）"><a href="#如何配置一个git账户（还没有设置过git账户）" class="headerlink" title="如何配置一个git账户（还没有设置过git账户）"></a>如何配置一个git账户（还没有设置过git账户）</h1><p>基本流程：设置git用户名和邮箱–&gt;生成SSH Key–&gt;添加公钥到git服务器（github或gitlab等）</p>
 <h2 id="设置git用户名和邮箱"><a href="#设置git用户名和邮箱" class="headerlink" title="设置git用户名和邮箱"></a>设置git用户名和邮箱</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;用户名&quot;</span><br><span class="line">git config --global user.email &quot;邮箱&quot;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>注意git config命令的<code>--global</code>参数，用了这个参数，表示你这台机器上<code>所有的Git仓库</code>都会使用这个配置，<strong>当然也可以对某个仓库指定不同的用户名和Email地址</strong>。</p>
 <h2 id="生成SSH-Key"><a href="#生成SSH-Key" class="headerlink" title="生成SSH Key"></a>生成SSH Key</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;邮箱&quot;</span><br></pre></td></tr></table></figure>
 <p>然后一路回车，使用默认值即可，在用户主目录.ssh目录下，会生成<code>id_rsa和id_rsa.pub</code>两个文件。</p>
@@ -371,7 +372,6 @@
 <li>id_rsa.pub（公钥）</li>
 </ul>
 <h2 id="添加公钥到git服务器"><a href="#添加公钥到git服务器" class="headerlink" title="添加公钥到git服务器"></a>添加公钥到git服务器</h2><p>将<code>id_rsa.pub</code>里面的内容添加到SSH Key中</p>
-<a id="more"></a>
 <h1 id="如何配置多个git账户"><a href="#如何配置多个git账户" class="headerlink" title="如何配置多个git账户"></a>如何配置多个git账户</h1><p>暂时配了两个，多个重复以下操作就好了O(∩_∩)O哈哈~<br>问题情景：公司代码托管工具也是git然后有自己的gitlab服务器，如果沿用上面的配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;用户名&quot;</span><br><span class="line">git config --global user.email &quot;邮箱&quot;</span><br></pre></td></tr></table></figure></p>
 <p>务必会造成个人的git与公司的git不能同时存在，所以让我们来看看同一台机器多个git如何配置</p>
 <p>假设第一次设置的是账户A，第二次设置的是账户B，以下用A,B来代称。</p>

@@ -365,12 +365,6 @@
       
         
           <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>总结记录一下经常需要用到垂直居中布局，欢迎补充(空手套。。。O(∩_∩)O)</p>
-<p>以下栗子如果未特别标注同一使用这样的html结构</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h1 id="垂直居中布局"><a href="#垂直居中布局" class="headerlink" title="垂直居中布局"></a>垂直居中布局</h1><h2 id="利用绝对定位和负margin"><a href="#利用绝对定位和负margin" class="headerlink" title="利用绝对定位和负margin"></a>利用绝对定位和负margin</h2><p>绝对定位可以很容易做到top:50%，现在只要再让目标元素上移自身高度的一半就垂直居中了</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#777777</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">400px</span>;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.container</span> <span class="selector-class">.content</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">margin-top</span>: -<span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">margin-left</span>: -<span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#ee5f28</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://user-gold-cdn.xitu.io/2018/1/24/1612863e0ecd13a0?w=1364&amp;h=406&amp;f=png&amp;s=4760" alt=""></p>
-<p>优点：兼容性好<br>缺点：需要知道居中元素的高度</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/01/24/css垂直居中总结/#more" rel="contents">
@@ -654,10 +648,6 @@
           <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>刚开始接触vue-cli，发现用它生成的框架代码是缺少Mock模拟的，于是自己摸索了许久，将自己的摸索的结果通过过程记录下来，希望对别人有所帮助，能少走弯路。</p>
 <p><code>这不是关于vue-cli的，是单纯的模拟数据服务</code><br><code>这不是关于vue-cli的，是单纯的模拟数据服务</code><br><code>这不是关于vue-cli的，是单纯的模拟数据服务</code></p>
 <p>同时希望获得更好的解决方案，有更好方案的不要吝啬分享啊。</p>
-<h1 id="实现目标"><a href="#实现目标" class="headerlink" title="实现目标"></a>实现目标</h1><ul>
-<li>1.ajax数据模拟，灵活的接口配置</li>
-<li>2.热更新（不用手动重启mock的服务，自动重启不知道算不算O(∩_∩)O哈哈~）</li>
-</ul>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/01/04/搭建简单的伪热更新Mock服务/#more" rel="contents">
@@ -794,14 +784,6 @@
         
           <h1 id="如何配置一个git账户（还没有设置过git账户）"><a href="#如何配置一个git账户（还没有设置过git账户）" class="headerlink" title="如何配置一个git账户（还没有设置过git账户）"></a>如何配置一个git账户（还没有设置过git账户）</h1><p>基本流程：设置git用户名和邮箱–&gt;生成SSH Key–&gt;添加公钥到git服务器（github或gitlab等）</p>
 <h2 id="设置git用户名和邮箱"><a href="#设置git用户名和邮箱" class="headerlink" title="设置git用户名和邮箱"></a>设置git用户名和邮箱</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;用户名&quot;</span><br><span class="line">git config --global user.email &quot;邮箱&quot;</span><br></pre></td></tr></table></figure>
-<p>注意git config命令的<code>--global</code>参数，用了这个参数，表示你这台机器上<code>所有的Git仓库</code>都会使用这个配置，<strong>当然也可以对某个仓库指定不同的用户名和Email地址</strong>。</p>
-<h2 id="生成SSH-Key"><a href="#生成SSH-Key" class="headerlink" title="生成SSH Key"></a>生成SSH Key</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;邮箱&quot;</span><br></pre></td></tr></table></figure>
-<p>然后一路回车，使用默认值即可，在用户主目录.ssh目录下，会生成<code>id_rsa和id_rsa.pub</code>两个文件。</p>
-<ul>
-<li>id_rsa（私钥）</li>
-<li>id_rsa.pub（公钥）</li>
-</ul>
-<h2 id="添加公钥到git服务器"><a href="#添加公钥到git服务器" class="headerlink" title="添加公钥到git服务器"></a>添加公钥到git服务器</h2><p>将<code>id_rsa.pub</code>里面的内容添加到SSH Key中</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/12/14/window下git多账户管理/#more" rel="contents">
@@ -940,8 +922,6 @@
 <p>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.</p>
 </blockquote>
 <p>Git是一个免费的、开放源码的分布式版本控制系统，它能以快速和效率处理从各种各样的项目。（一句话概括，就是分布式版本控制工具）</p>
-<h1 id="git操作常用操作"><a href="#git操作常用操作" class="headerlink" title="git操作常用操作"></a>git操作常用操作</h1><h2 id="如何克隆项目"><a href="#如何克隆项目" class="headerlink" title="如何克隆项目"></a>如何克隆项目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone xxx.git</span><br></pre></td></tr></table></figure>
-<h2 id="如何管理文件"><a href="#如何管理文件" class="headerlink" title="如何管理文件"></a>如何管理文件</h2><p><img src="https://sfault-image.b0.upaiyun.com/872/913/872913950-5a1c341a11039_articlex" alt="clipboard.png"></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/06/12/git常用操作/#more" rel="contents">
@@ -995,7 +975,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://superluminalsnails.github.io/2017/05/06/浅出闭包/">
+    <link itemprop="mainEntityOfPage" href="http://superluminalsnails.github.io/2017/05/06/闭包/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SuperluminalSnails">
@@ -1014,7 +994,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/05/06/浅出闭包/" itemprop="url">闭包</a></h1>
+                <a class="post-title-link" href="/2017/05/06/闭包/" itemprop="url">JavaScript开发和面试之闭包</a></h1>
         
 
         <div class="post-meta">
@@ -1044,7 +1024,7 @@
 
           
           
-             <span id="/2017/05/06/浅出闭包/" class="leancloud_visitors" data-flag-title="闭包">
+             <span id="/2017/05/06/闭包/" class="leancloud_visitors" data-flag-title="JavaScript开发和面试之闭包">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1076,11 +1056,17 @@
 
       
         
-          <h1 id="什么是闭包"><a href="#什么是闭包" class="headerlink" title="什么是闭包"></a>什么是闭包</h1><p>用一句话概括:函数外部可以访问函数内部的变量(不懂没关系,请往下面看)</p>
-<h1 id="闭包的原理"><a href="#闭包的原理" class="headerlink" title="闭包的原理"></a>闭包的原理</h1><h2 id="javascript作用域"><a href="#javascript作用域" class="headerlink" title="javascript作用域"></a>javascript作用域</h2><p>对于函数外部的变量,函数内部可以访问<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> n=<span class="number">1000</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(n);</span><br><span class="line">&#125;</span><br><span class="line">fn();<span class="comment">//输出1000</span></span><br></pre></td></tr></table></figure></p>
+          <h1 id="什么是闭包"><a href="#什么是闭包" class="headerlink" title="什么是闭包"></a>什么是闭包</h1><p>要理解闭包需要先理解变量作用域</p>
+<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>明确几点：</p>
+<ul>
+<li>JavaScript的变量作用域是基于其特有的作用域链的</li>
+<li>JavaScript没有块级作用域</li>
+<li>函数中声明的变量在整个函数中都有定义</li>
+</ul>
+<p>按照作用域区分，变量有全局变量和局部变量，由于作用域链，函数内部是可以直接读取全局变量的，而函数外部无法直接读取函数内的局部变量。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/05/06/浅出闭包/#more" rel="contents">
+            <a class="btn" href="/2017/05/06/闭包/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1212,8 +1198,7 @@
 
       
         
-          
-            <h1 id="聚合-amp-amp-周报订阅"><a href="#聚合-amp-amp-周报订阅" class="headerlink" title="聚合&amp;&amp;周报订阅"></a>聚合&amp;&amp;周报订阅</h1><table>
+          <h1 id="聚合-amp-amp-周报订阅"><a href="#聚合-amp-amp-周报订阅" class="headerlink" title="聚合&amp;&amp;周报订阅"></a>聚合&amp;&amp;周报订阅</h1><table>
 <thead>
 <tr>
 <th>名称</th>
@@ -1249,334 +1234,13 @@
 </tr>
 </tbody>
 </table>
-<h1 id="专业博客"><a href="#专业博客" class="headerlink" title="专业博客"></a>专业博客</h1><table>
-<thead>
-<tr>
-<th>名称</th>
-<th>活跃度</th>
-<th>原创度</th>
-<th>维护者</th>
-<th>其他</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="http://www.w3cplus.com/" target="_blank" rel="noopener">W3Cplus</a></td>
-<td>★★★★★</td>
-<td>★★★★★</td>
-<td>携程 @大漠</td>
-<td>国内最优秀的前端博客，原创居多</td>
-</tr>
-<tr>
-<td><a href="http://www.w3cfuns.com/" target="_blank" rel="noopener">W3Cfuns</a></td>
-<td>★★★★★</td>
-<td>★★★★☆</td>
-<td><a href="http://www.w3cfuns.com/misc.php?mod=faq&amp;action=faq&amp;id=1" target="_blank" rel="noopener">#</a></td>
-<td>专注于web前端开发行业的综合性门户网站</td>
-</tr>
-<tr>
-<td><a href="http://www.qianduan.net/" target="_blank" rel="noopener">前端观察</a></td>
-<td>★★★★☆</td>
-<td>★★★★☆</td>
-<td>腾讯 ISUX @神飞</td>
-<td>曾经最优秀，最近更新不频繁了</td>
-</tr>
-<tr>
-<td><a href="http://www.alloyteam.com/" target="_blank" rel="noopener">腾讯web前端 AlloyTeam 团队</a></td>
-<td>★★★★</td>
-<td>★★★★</td>
-<td><a href="http://t.qq.com/AlloyTeam" target="_blank" rel="noopener">@腾讯AlloyTeam</a></td>
-<td>来自于腾讯SNG(社交网络事业群)</td>
-</tr>
-<tr>
-<td><a href="http://www.zhangxinxu.com/wordpress/" target="_blank" rel="noopener">张鑫旭-鑫空间-鑫生活</a></td>
-<td>★★★★☆</td>
-<td>★★★★★</td>
-<td>张鑫旭</td>
-<td>重构很厉害，不少经典文章经验</td>
-</tr>
-<tr>
-<td><a href="http://www.ruanyifeng.com/blog/" target="_blank" rel="noopener">阮一峰博客</a></td>
-<td>★★★★☆</td>
-<td>★★★☆☆</td>
-<td><a href="http://www.ruanyifeng.com/about.html" target="_blank" rel="noopener">#</a></td>
-<td>牛人一个</td>
-</tr>
-<tr>
-<td><a href="http://beforweb.com/" target="_blank" rel="noopener">Be For Web - 为网而生 - 原创译文博客</a></td>
-<td>★★★★☆</td>
-<td>★★★★☆</td>
-<td><a href="http://weibo.com/c7210" target="_blank" rel="noopener">@C7210</a></td>
-<td>关注移动应用及互联网产品、用户体验设计、前端开发</td>
-</tr>
-</tbody>
-</table>
-<h1 id="活跃微博"><a href="#活跃微博" class="headerlink" title="活跃微博"></a>活跃微博</h1><table>
-<thead>
-<tr>
-<th>ID</th>
-<th>公司</th>
-<th>简介</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="http://weibo.com/xitucircle" target="_blank" rel="noopener">@稀土圈</a></td>
-<td>#</td>
-<td>强烈推荐，分享一些技术文章和Github项目</td>
-</tr>
-<tr>
-<td><a href="http://weibo.com/w3cchina" target="_blank" rel="noopener">@w3c中国</a></td>
-<td>#</td>
-<td>万维网联盟中国办事处官方微博</td>
-</tr>
-<tr>
-<td><a href="http://weibo.com/javascriptdev" target="_blank" rel="noopener">@TheFrontEnd</a></td>
-<td>#</td>
-<td>JavaScript技术资讯、新闻、教程、深度文章。</td>
-</tr>
-<tr>
-<td><a href="http://weibo.com/fekb" target="_blank" rel="noopener">@前端快爆</a></td>
-<td>阿里巴巴</td>
-<td>有HTML5、CSS3、JS</td>
-</tr>
-<tr>
-<td><a href="http://e.weibo.com/html5cn" target="_blank" rel="noopener">@HTML5中国</a></td>
-<td>#</td>
-<td>中国<a href="http://www.html5cn.org官方微博" target="_blank" rel="noopener">www.html5cn.org官方微博</a></td>
-</tr>
-</tbody>
-</table>
-<h1 id="一些社区"><a href="#一些社区" class="headerlink" title="一些社区"></a>一些社区</h1><table>
-<thead>
-<tr>
-<th>名称</th>
-<th>地址</th>
-<th>介绍</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>V2EX</td>
-<td><a href="http://v2ex.com/" target="_blank" rel="noopener">http://v2ex.com/</a></td>
-<td>小众活跃社区</td>
-</tr>
-<tr>
-<td>稀土掘进</td>
-<td><a href="https://juejin.im/" target="_blank" rel="noopener">https://juejin.im/</a></td>
-<td>程序员同性交友社区</td>
-</tr>
-<tr>
-<td>知乎</td>
-<td><a href="http://www.zhihu.com/" target="_blank" rel="noopener">http://www.zhihu.com/</a></td>
-<td>综合问答社区</td>
-</tr>
-<tr>
-<td>前端乱炖</td>
-<td><a href="http://www.html-js.com/" target="_blank" rel="noopener">http://www.html-js.com/</a></td>
-<td>专业的前端知识平台</td>
-</tr>
-<tr>
-<td>segmentfault</td>
-<td><a href="http://segmentfault.com/" target="_blank" rel="noopener">http://segmentfault.com/</a></td>
-<td>综合问答社区</td>
-</tr>
-<tr>
-<td>果壳问答</td>
-<td><a href="http://www.guokr.com/ask/pending/" target="_blank" rel="noopener">http://www.guokr.com/ask/pending/</a></td>
-<td>综合问答社区</td>
-</tr>
-<tr>
-<td>Ruby</td>
-<td><a href="http://ruby-china.org/" target="_blank" rel="noopener">http://ruby-china.org/</a></td>
-<td>同 V2EX 氛围类似，不局限于Ruby</td>
-</tr>
-<tr>
-<td>Node.js 中文社区</td>
-<td><a href="http://cnodejs.org/" target="_blank" rel="noopener">http://cnodejs.org/</a></td>
-<td>Node.js 国内最活跃的社区</td>
-</tr>
-<tr>
-<td>Code Wall</td>
-<td><a href="https://coderwall.com/" target="_blank" rel="noopener">https://coderwall.com/</a></td>
-<td>国外技术社区</td>
-</tr>
-<tr>
-<td>DIV.IO</td>
-<td><a href="http://div.io/" target="_blank" rel="noopener">http://div.io/</a></td>
-<td>国内前端技术社区</td>
-</tr>
-<tr>
-<td>w3ctech</td>
-<td><a href="http://www.w3ctech.com/" target="_blank" rel="noopener">http://www.w3ctech.com/</a></td>
-<td>国内前端技术社区，常有一些线下活动发布</td>
-</tr>
-</tbody>
-</table>
-<h1 id="企业官方博客"><a href="#企业官方博客" class="headerlink" title="企业官方博客"></a>企业官方博客</h1><table>
-<thead>
-<tr>
-<th>名称</th>
-<th>公司</th>
-<th>部门</th>
-<th>活跃度</th>
-<th>简介</th>
-<th>微博</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="http://www.alloyteam.com/" target="_blank" rel="noopener">腾讯Web前端 Alloy 团队 Blog</a></td>
-<td>腾讯</td>
-<td>SNG</td>
-<td>★★★★☆</td>
-<td>主要负责手机QQ、QQ互联、腾讯Q+、WebQQ项目的团队。</td>
-<td><a href="http://weibo.com/alloyteam" target="_blank" rel="noopener">alloyteam</a></td>
-</tr>
-<tr>
-<td><a href="https://aotu.io/" target="_blank" rel="noopener">凹凸实验室</a></td>
-<td>京东</td>
-<td>FED</td>
-<td>★★★★★</td>
-<td>简凹凸实验室(Aotu.io，英文简称O2) 始建于2015年10月，是一个年轻基情的技术团队。</td>
-<td>#</td>
-</tr>
-<tr>
-<td><a href="http://fex.baidu.com/" target="_blank" rel="noopener">百度FEX</a></td>
-<td>百度</td>
-<td>FEX</td>
-<td>★★★★☆</td>
-<td>百度前端团队Blog,关注前端技术，还更重视全端及全栈的能力。</td>
-<td>#</td>
-</tr>
-</tbody>
-</table>
-<h1 id="书籍"><a href="#书籍" class="headerlink" title="书籍"></a>书籍</h1><table>
-<thead>
-<tr>
-<th>名称</th>
-<th>作者</th>
-<th>价格</th>
-<th>出版社</th>
-<th>简评</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="http://book.douban.com/subject/3327829/" target="_blank" rel="noopener">Web标准设计</a></td>
-<td>刘杰（嗷嗷）</td>
-<td>RMB 60.00</td>
-<td>清华大学出版社</td>
-<td>基础入门</td>
-</tr>
-<tr>
-<td><a href="http://book.douban.com/subject/4914146/" target="_blank" rel="noopener">大巧不工 : Web前端设计修炼之道</a></td>
-<td>赖定清 / 林坚</td>
-<td>RMB 59.00</td>
-<td>机械工业出版社</td>
-<td>适合入门，了解前端全局</td>
-</tr>
-<tr>
-<td><a href="http://book.douban.com/subject/3132277/" target="_blank" rel="noopener">高性能网站建设指南:前端工程师技能精髓</a></td>
-<td>Steve Souders</td>
-<td>RMB 35.00</td>
-<td>电子工业出版社</td>
-<td>能从原理层理解各种方法</td>
-</tr>
-<tr>
-<td><a href="http://book.douban.com/subject/4719162/" target="_blank" rel="noopener">高性能网站建设指南:Web开发者性能优化最佳实践</a></td>
-<td>Steve Souders</td>
-<td>RMB 49.80</td>
-<td>电子工业出版社</td>
-<td>#</td>
-</tr>
-<tr>
-<td><a href="http://book.douban.com/subject/4124141/" target="_blank" rel="noopener">Web站点优化 : Web站点优化</a></td>
-<td>金</td>
-<td>RMB 55.00</td>
-<td>#</td>
-<td>#</td>
-</tr>
-<tr>
-<td><a href="http://book.douban.com/subject/10789820/" target="_blank" rel="noopener">Node.js开发指南</a></td>
-<td>郭家寶</td>
-<td>RMB 45.00</td>
-<td>#</td>
-<td>作者很牛</td>
-</tr>
-<tr>
-<td><a href="http://book.douban.com/subject/10546125/" target="_blank" rel="noopener">JavaScript高级程序设计</a></td>
-<td>Nicholas C. Zakas</td>
-<td>RMB 99.00</td>
-<td>人民邮电出版社</td>
-<td>适合没事就翻翻</td>
-</tr>
-<tr>
-<td><a href="http://book.douban.com/subject/2228378/" target="_blank" rel="noopener">JavaScript权威指南</a></td>
-<td>弗拉纳根</td>
-<td>RMB 109.00</td>
-<td>机械工业出版社</td>
-<td>犀牛书</td>
-</tr>
-<tr>
-<td><a href="http://book.douban.com/subject/3590768/" target="_blank" rel="noopener">JavaScript语言精粹</a></td>
-<td>Douglas Crockford</td>
-<td>RMB 35.00</td>
-<td>电子工业出版社</td>
-<td>绝对经典，相信看完后，对Javascript这门语言有了重新认识，原来这个语言是这么的美丽！</td>
-</tr>
-<tr>
-<td><a href="http://book.douban.com/subject/25768396/" target="_blank" rel="noopener">深入浅出node.js</a></td>
-<td>朴灵</td>
-<td>RMB 69.00</td>
-<td>人民邮电出版社</td>
-<td>一本从前端通往全端的好书</td>
-</tr>
-<tr>
-<td><a href="http://book.douban.com/subject/3137282/" target="_blank" rel="noopener">CSS开发王</a></td>
-<td>张亚飞</td>
-<td>RMB 49.00</td>
-<td>电子工业出版社</td>
-<td>适合有一定基础后CSS进阶用</td>
-</tr>
-<tr>
-<td><a href="http://book.douban.com/subject/6038371/" target="_blank" rel="noopener">JavaScript DOM编程艺术</a></td>
-<td>Jeremy Keith /Jeffrey Sambells</td>
-<td>RMB 49.00</td>
-<td>人民邮电出版社</td>
-<td>适合Javascript入门看</td>
-</tr>
-</tbody>
-</table>
-<h1 id="线上文档参考"><a href="#线上文档参考" class="headerlink" title="线上文档参考"></a>线上文档参考</h1><table>
-<thead>
-<tr>
-<th>书名</th>
-<th>地址</th>
-<th>作者</th>
-<th>译者</th>
-<th>介绍</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>JavaScript秘密花园</td>
-<td><a href="http://bonsaiden.github.io/JavaScript-Garden/zh/" target="_blank" rel="noopener">http://bonsaiden.github.io/JavaScript-Garden/zh/</a></td>
-<td>伊沃·韦特泽尔&amp;张易江</td>
-<td><a href="http://sanshi.me/" target="_blank" rel="noopener">三生石上</a></td>
-<td>完整书籍，界面美观，有详细demo</td>
-</tr>
-<tr>
-<td>Material Design 中文版</td>
-<td><a href="http://design.1sters.com/" target="_blank" rel="noopener">http://design.1sters.com/</a></td>
-<td>Google设计手册</td>
-<td>协同翻译</td>
-<td>Google I/O 2014 发布的 Material Design 官方手册的中文翻译</td>
-</tr>
-</tbody>
-</table>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/05/资料整理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

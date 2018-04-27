@@ -94,13 +94,13 @@
 
 
 
-<meta name="description" content="简介刚开始接触vue-cli，发现用它生成的框架代码是缺少Mock模拟的，于是自己摸索了许久，将自己的摸索的结果通过过程记录下来，希望对别人有所帮助，能少走弯路。 这不是关于vue-cli的，是单纯的模拟数据服务这不是关于vue-cli的，是单纯的模拟数据服务这不是关于vue-cli的，是单纯的模拟数据服务 同时希望获得更好的解决方案，有更好方案的不要吝啬分享啊。 实现目标 1.ajax数据模拟，">
+<meta name="description" content="简介刚开始接触vue-cli，发现用它生成的框架代码是缺少Mock模拟的，于是自己摸索了许久，将自己的摸索的结果通过过程记录下来，希望对别人有所帮助，能少走弯路。 这不是关于vue-cli的，是单纯的模拟数据服务这不是关于vue-cli的，是单纯的模拟数据服务这不是关于vue-cli的，是单纯的模拟数据服务 同时希望获得更好的解决方案，有更好方案的不要吝啬分享啊。">
 <meta name="keywords" content="javascript,node.js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="搭建简单的伪热更新Mock服务">
 <meta property="og:url" content="http://superluminalsnails.github.io/2018/01/04/搭建简单的伪热更新Mock服务/index.html">
 <meta property="og:site_name" content="SuperluminalSnails&#39;s Blog">
-<meta property="og:description" content="简介刚开始接触vue-cli，发现用它生成的框架代码是缺少Mock模拟的，于是自己摸索了许久，将自己的摸索的结果通过过程记录下来，希望对别人有所帮助，能少走弯路。 这不是关于vue-cli的，是单纯的模拟数据服务这不是关于vue-cli的，是单纯的模拟数据服务这不是关于vue-cli的，是单纯的模拟数据服务 同时希望获得更好的解决方案，有更好方案的不要吝啬分享啊。 实现目标 1.ajax数据模拟，">
+<meta property="og:description" content="简介刚开始接触vue-cli，发现用它生成的框架代码是缺少Mock模拟的，于是自己摸索了许久，将自己的摸索的结果通过过程记录下来，希望对别人有所帮助，能少走弯路。 这不是关于vue-cli的，是单纯的模拟数据服务这不是关于vue-cli的，是单纯的模拟数据服务这不是关于vue-cli的，是单纯的模拟数据服务 同时希望获得更好的解决方案，有更好方案的不要吝啬分享啊。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://sfault-image.b0.upaiyun.com/109/501/1095013215-5a4d09bb30eb2_articlex">
 <meta property="og:image" content="https://sfault-image.b0.upaiyun.com/284/675/2846756757-5a4d0a2dcd040_articlex">
@@ -109,10 +109,10 @@
 <meta property="og:image" content="https://sfault-image.b0.upaiyun.com/477/770/477770641-5a4d0a94009bf_articlex">
 <meta property="og:image" content="https://sfault-image.b0.upaiyun.com/360/006/3600067269-5a4d0ac9d2c9c_articlex">
 <meta property="og:image" content="https://sfault-image.b0.upaiyun.com/524/545/524545307-5a4d0aee7a0c3_articlex">
-<meta property="og:updated_time" content="2018-04-21T13:40:42.728Z">
+<meta property="og:updated_time" content="2018-04-25T16:43:20.023Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建简单的伪热更新Mock服务">
-<meta name="twitter:description" content="简介刚开始接触vue-cli，发现用它生成的框架代码是缺少Mock模拟的，于是自己摸索了许久，将自己的摸索的结果通过过程记录下来，希望对别人有所帮助，能少走弯路。 这不是关于vue-cli的，是单纯的模拟数据服务这不是关于vue-cli的，是单纯的模拟数据服务这不是关于vue-cli的，是单纯的模拟数据服务 同时希望获得更好的解决方案，有更好方案的不要吝啬分享啊。 实现目标 1.ajax数据模拟，">
+<meta name="twitter:description" content="简介刚开始接触vue-cli，发现用它生成的框架代码是缺少Mock模拟的，于是自己摸索了许久，将自己的摸索的结果通过过程记录下来，希望对别人有所帮助，能少走弯路。 这不是关于vue-cli的，是单纯的模拟数据服务这不是关于vue-cli的，是单纯的模拟数据服务这不是关于vue-cli的，是单纯的模拟数据服务 同时希望获得更好的解决方案，有更好方案的不要吝啬分享啊。">
 <meta name="twitter:image" content="https://sfault-image.b0.upaiyun.com/109/501/1095013215-5a4d09bb30eb2_articlex">
 
 
@@ -372,11 +372,11 @@
         <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>刚开始接触vue-cli，发现用它生成的框架代码是缺少Mock模拟的，于是自己摸索了许久，将自己的摸索的结果通过过程记录下来，希望对别人有所帮助，能少走弯路。</p>
 <p><code>这不是关于vue-cli的，是单纯的模拟数据服务</code><br><code>这不是关于vue-cli的，是单纯的模拟数据服务</code><br><code>这不是关于vue-cli的，是单纯的模拟数据服务</code></p>
 <p>同时希望获得更好的解决方案，有更好方案的不要吝啬分享啊。</p>
+<a id="more"></a>
 <h1 id="实现目标"><a href="#实现目标" class="headerlink" title="实现目标"></a>实现目标</h1><ul>
 <li>1.ajax数据模拟，灵活的接口配置</li>
 <li>2.热更新（不用手动重启mock的服务，自动重启不知道算不算O(∩_∩)O哈哈~）</li>
 </ul>
-<a id="more"></a>
 <h1 id="搭建"><a href="#搭建" class="headerlink" title="搭建"></a>搭建</h1><p>过程变化</p>
 <ul>
 <li>1.简单mock服务</li>

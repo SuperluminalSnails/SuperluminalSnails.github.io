@@ -94,22 +94,22 @@
 
 
 
-<meta name="description" content="简介总结记录一下经常需要用到垂直居中布局，欢迎补充(空手套。。。O(∩_∩)O) 以下栗子如果未特别标注同一使用这样的html结构 123&amp;lt;div class=&quot;container&quot;&amp;gt;    &amp;lt;div class=&quot;content&quot;&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt; 垂直居中布局利用绝对定位和负margin绝对定位可以很容易做到top:50%，现在只要再让目">
+<meta name="description" content="简介总结记录一下经常需要用到垂直居中布局，欢迎补充(空手套。。。O(∩_∩)O)">
 <meta name="keywords" content="布局">
 <meta property="og:type" content="article">
 <meta property="og:title" content="css垂直居中布局总结">
 <meta property="og:url" content="http://superluminalsnails.github.io/2018/01/24/css垂直居中总结/index.html">
 <meta property="og:site_name" content="SuperluminalSnails&#39;s Blog">
-<meta property="og:description" content="简介总结记录一下经常需要用到垂直居中布局，欢迎补充(空手套。。。O(∩_∩)O) 以下栗子如果未特别标注同一使用这样的html结构 123&amp;lt;div class=&quot;container&quot;&amp;gt;    &amp;lt;div class=&quot;content&quot;&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt; 垂直居中布局利用绝对定位和负margin绝对定位可以很容易做到top:50%，现在只要再让目">
+<meta property="og:description" content="简介总结记录一下经常需要用到垂直居中布局，欢迎补充(空手套。。。O(∩_∩)O)">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/1/24/1612863e0ecd13a0?w=1364&h=406&f=png&s=4760">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/1/24/16128633bf99c4ad?w=1229&h=539&f=png&s=65783">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/1/24/161286e98a6d899d?w=1237&h=446&f=png&s=50039">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/1/24/161287c0f8818a96?w=1229&h=511&f=png&s=63515">
-<meta property="og:updated_time" content="2018-04-21T13:37:24.570Z">
+<meta property="og:updated_time" content="2018-04-25T16:42:42.098Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css垂直居中布局总结">
-<meta name="twitter:description" content="简介总结记录一下经常需要用到垂直居中布局，欢迎补充(空手套。。。O(∩_∩)O) 以下栗子如果未特别标注同一使用这样的html结构 123&amp;lt;div class=&quot;container&quot;&amp;gt;    &amp;lt;div class=&quot;content&quot;&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt; 垂直居中布局利用绝对定位和负margin绝对定位可以很容易做到top:50%，现在只要再让目">
+<meta name="twitter:description" content="简介总结记录一下经常需要用到垂直居中布局，欢迎补充(空手套。。。O(∩_∩)O)">
 <meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/1/24/1612863e0ecd13a0?w=1364&h=406&f=png&s=4760">
 
 
@@ -367,13 +367,13 @@
 
       
         <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>总结记录一下经常需要用到垂直居中布局，欢迎补充(空手套。。。O(∩_∩)O)</p>
+<a id="more"></a>
 <p>以下栗子如果未特别标注同一使用这样的html结构</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h1 id="垂直居中布局"><a href="#垂直居中布局" class="headerlink" title="垂直居中布局"></a>垂直居中布局</h1><h2 id="利用绝对定位和负margin"><a href="#利用绝对定位和负margin" class="headerlink" title="利用绝对定位和负margin"></a>利用绝对定位和负margin</h2><p>绝对定位可以很容易做到top:50%，现在只要再让目标元素上移自身高度的一半就垂直居中了</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#777777</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">400px</span>;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.container</span> <span class="selector-class">.content</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">margin-top</span>: -<span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">margin-left</span>: -<span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#ee5f28</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><img src="https://user-gold-cdn.xitu.io/2018/1/24/1612863e0ecd13a0?w=1364&amp;h=406&amp;f=png&amp;s=4760" alt=""></p>
 <p>优点：兼容性好<br>缺点：需要知道居中元素的高度</p>
-<a id="more"></a>
 <h2 id="利用绝对定位和transform"><a href="#利用绝对定位和transform" class="headerlink" title="利用绝对定位和transform"></a>利用绝对定位和transform</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> <span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#777777</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">400px</span>;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.container</span> <span class="selector-class">.content</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(-50%, -50%, 0);</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#ee5f28</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>优点：不需要考虑content元素的高度</li>
