@@ -107,7 +107,7 @@
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/10/163487e1ced2e2d7?w=634&h=828&f=png&s=35978">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/12/163542bd9cebc824?w=252&h=272&f=png&s=5851">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/12/1635433ddb7e6af4">
-<meta property="og:updated_time" content="2018-05-12T12:03:31.498Z">
+<meta property="og:updated_time" content="2018-05-21T13:40:30.186Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="1px边框解决方案总结">
 <meta name="twitter:description" content="1px问题产生的原因从移动端的角度说个具体的场景，以iphone6为例。 iphone6的屏幕宽度为375px，设计师做的视觉稿一般是750px，也就是2x，这个时候设计师在视觉稿上画了1px的边框，于是你就写了“border-width:1px”，so…1px边框问题产生了。 对设计师来说它的1px是相对于750px的（物理像素），对你来说你的1px是相对于375px的（css像素）“实际上你应">
@@ -370,6 +370,7 @@
         <h1 id="1px问题产生的原因"><a href="#1px问题产生的原因" class="headerlink" title="1px问题产生的原因"></a>1px问题产生的原因</h1><p>从移动端的角度说个具体的场景，以iphone6为例。</p>
 <p>iphone6的屏幕宽度为375px，设计师做的<code>视觉稿</code>一般是750px，也就是2x，这个时候设计师在<code>视觉稿</code>上画了1px的边框，于是你就写了“<code>border-width:1px</code>”，<strong>so…1px边框问题产生了</strong>。</p>
 <p>对设计师来说它的1px是相对于750px的（物理像素），对你来说你的1px是相对于375px的（css像素）“<strong>实际上你应该是border-width:0.5px</strong>”。</p>
+<a id="more"></a>
 <h1 id="具体方案"><a href="#具体方案" class="headerlink" title="具体方案"></a>具体方案</h1><p>知道了问题产生的原因，辣么就好弄解决方案啦，O(∩_∩)O。</p>
 <h2 id="用小数写边框"><a href="#用小数写边框" class="headerlink" title="用小数写边框"></a>用小数写边框</h2><p>媒体查询，加小数的写法</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.border</span> &#123; <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#999</span> &#125;</span><br><span class="line">@<span class="keyword">media</span> screen and (-webkit-min-device-pixel-ratio: <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="selector-class">.border</span> &#123; <span class="attribute">border</span>: <span class="number">0.5px</span> solid <span class="number">#999</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line">@<span class="keyword">media</span> screen and (-webkit-min-device-pixel-ratio: <span class="number">3</span>) &#123;</span><br><span class="line">    <span class="selector-class">.border</span> &#123; <span class="attribute">border</span>: <span class="number">0.333333px</span> solid <span class="number">#999</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -451,6 +452,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/05/21/stiky-footer方案总结/" rel="prev" title="stiky footer方案总结">
+                stiky footer方案总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -528,7 +533,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
