@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="概述 IndexedDB 是一个事务型数据库系统，类似于基于 SQL 的 RDBMS。 然而不同的是它使用固定列表，IndexedDB 是一个基于 JavaScript 的面向对象的数据库。   现有的浏览器数据储存方案，都不适合储存大量数据：Cookie 的大小不超过 4KB，且每次请求都会发送回服务器 LocalStorage 在 2.5MB 到 10MB 之间（各家浏览器不同），而且不提供搜">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="indexedDB入门">
+<meta property="og:url" content="http://superluminalsnails.github.io/2019/02/13/indexedDB入门/index.html">
+<meta property="og:site_name" content="Blog">
+<meta property="og:description" content="概述 IndexedDB 是一个事务型数据库系统，类似于基于 SQL 的 RDBMS。 然而不同的是它使用固定列表，IndexedDB 是一个基于 JavaScript 的面向对象的数据库。   现有的浏览器数据储存方案，都不适合储存大量数据：Cookie 的大小不超过 4KB，且每次请求都会发送回服务器 LocalStorage 在 2.5MB 到 10MB 之间（各家浏览器不同），而且不提供搜">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-13T08:46:35.901Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="indexedDB入门">
+<meta name="twitter:description" content="概述 IndexedDB 是一个事务型数据库系统，类似于基于 SQL 的 RDBMS。 然而不同的是它使用固定列表，IndexedDB 是一个基于 JavaScript 的面向对象的数据库。   现有的浏览器数据储存方案，都不适合储存大量数据：Cookie 的大小不超过 4KB，且每次请求都会发送回服务器 LocalStorage 在 2.5MB 到 10MB 之间（各家浏览器不同），而且不提供搜">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://superluminalsnails.github.io/2019/02/13/indexedDB入门/"/>
+
+
+
+
+
+  <title>indexedDB入门 | Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?91cbfc023ccdc73d79429e21d6dea90e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">SuperluminalSnails's Note</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://superluminalsnails.github.io/2019/02/13/indexedDB入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SuperluminalSnails">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">indexedDB入门</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-13T15:11:09+08:00">
+                2019-02-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/02/13/indexedDB入门/" class="leancloud_visitors" data-flag-title="indexedDB入门">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><blockquote>
+<p>IndexedDB 是一个事务型数据库系统，类似于基于 SQL 的 RDBMS。 然而不同的是它使用固定列表，IndexedDB 是一个基于 JavaScript 的面向对象的数据库。</p>
+</blockquote>
+<blockquote>
+<p>现有的浏览器数据储存方案，都不适合储存大量数据：Cookie 的大小不超过 4KB，且每次请求都会发送回服务器 LocalStorage 在 2.5MB 到 10MB 之间（各家浏览器不同），而且不提供搜索功能，不能建立自定义的索引。所以，需要一种新的解决方案，这就是 IndexedDB 诞生的背景</p>
+</blockquote>
+<p><strong>简单来说，IndexedDB 就是浏览器提供的本地数据库。</strong></p>
+<p>IndexedDB 具有以下特点</p>
+<ul>
+<li>键值对储存</li>
+<li>异步操作（避免锁死浏览器）</li>
+<li>支持事务</li>
+<li>同源限制（协议+域名+端口）</li>
+<li>存储空间大</li>
+<li>支持二进制存储（ArrayBuffer 对象和 Blob 对象，可存储文件数据）</li>
+</ul>
+<a id="more"></a>
+<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>对比关系数据库 MySql 可以得到以下关系</p>
+<ul>
+<li>数据库：IDBDatabase</li>
+<li>表格：对象仓库（IDBObjectStore）</li>
+<li>行数据：对象仓库存储的一条数据</li>
+<li>索引：IDBindex，加速数据的检索（在对象仓库里面可为不同的键创建）</li>
+<li>事务：IDBTransaction</li>
+<li>操作请求：IDBRequest</li>
+<li>IDBCursor：遍历对象存储空间和索引</li>
+<li>IDBKeyRange：定义键的范围数据</li>
+</ul>
+<h1 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h1><h2 id="兼容性注意点"><a href="#兼容性注意点" class="headerlink" title="兼容性注意点"></a>兼容性注意点</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 全局变量兼容性问题</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.indexedDB =</span><br><span class="line">    <span class="built_in">window</span>.indexedDB ||</span><br><span class="line">    <span class="built_in">window</span>.mozIndexedDB ||</span><br><span class="line">    <span class="built_in">window</span>.webkitIndexedDB ||</span><br><span class="line">    <span class="built_in">window</span>.msIndexedDB;</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.IDBTransaction =</span><br><span class="line">    <span class="built_in">window</span>.IDBTransaction ||</span><br><span class="line">    <span class="built_in">window</span>.webkitIDBTransaction ||</span><br><span class="line">    <span class="built_in">window</span>.msIDBTransaction;</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.IDBKeyRange =</span><br><span class="line">    <span class="built_in">window</span>.IDBKeyRange || <span class="built_in">window</span>.webkitIDBKeyRange || <span class="built_in">window</span>.msIDBKeyRange;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!<span class="built_in">window</span>.indexedDB) &#123;</span><br><span class="line">    <span class="built_in">window</span>.alert(</span><br><span class="line">        <span class="string">"Your browser doesn't support a stable version of IndexedDB. Such and such feature will not be available."</span></span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h2><h3 id="打开-新建数据库"><a href="#打开-新建数据库" class="headerlink" title="打开/新建数据库"></a>打开/新建数据库</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> databaseName = <span class="string">"MyTestDatabase"</span>;</span><br><span class="line"><span class="keyword">var</span> databaseVersion = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打开数据库</span></span><br><span class="line"><span class="keyword">var</span> request = <span class="built_in">window</span>.indexedDB.open(databaseName, databaseVersion);</span><br><span class="line"></span><br><span class="line">request.onsuccess = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"open success"</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">request.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"open fail"</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">request.onupgradeneeded = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;&#125;;</span><br></pre></td></tr></table></figure>
+<p><code>window.indexedDB.open</code>函数打开对应的数据库，如果没有该数据库就会新建。</p>
+<p><code>新建数据库</code>或者数据库<code>版本</code>大于当前版本会触发<code>onupgradeneeded</code>事件</p>
+<p><strong>数据库为什么会有版本？</strong><br><code>因为数据库的数据解构可能会发生改变的</code>，所以一般修改数据解构的操作在<code>onupgradeneeded</code>里面书写</p>
+<h3 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.indexedDB.deleteDatabase(databaseName);</span><br></pre></td></tr></table></figure>
+<h2 id="对象仓库操作（表格操作）"><a href="#对象仓库操作（表格操作）" class="headerlink" title="对象仓库操作（表格操作）"></a>对象仓库操作（表格操作）</h2><p>创建和修改表格是修改数据库的<code>数据解构</code>，所以我把他们写在<code>onupgradeneeded</code>事件里</p>
+<h3 id="创建表格"><a href="#创建表格" class="headerlink" title="创建表格"></a>创建表格</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">request.onupgradeneeded = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"onupgradeneeded"</span>);</span><br><span class="line">    db = event.target.result;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建仓库对象（创建表格）</span></span><br><span class="line">    <span class="comment">// 这里我将主键设置为id</span></span><br><span class="line">    <span class="keyword">var</span> objectStore = db.createObjectStore(objectStoreName, &#123;</span><br><span class="line">        keyPath: <span class="string">"id"</span>,</span><br><span class="line">        autoIncrement: <span class="literal">true</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="删除表格"><a href="#删除表格" class="headerlink" title="删除表格"></a>删除表格</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">request.onupgradeneeded = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"onupgradeneeded"</span>);</span><br><span class="line">    db = event.target.result;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 删除仓库对象（删除表格）</span></span><br><span class="line">    db.deleteObjectStore(objectStoreName);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="数据操作（行数据操作）"><a href="#数据操作（行数据操作）" class="headerlink" title="数据操作（行数据操作）"></a>数据操作（行数据操作）</h2><h3 id="新增数据（增）"><a href="#新增数据（增）" class="headerlink" title="新增数据（增）"></a>新增数据（增）</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> databaseName = <span class="string">"MyTestDatabase"</span>;</span><br><span class="line"><span class="keyword">var</span> databaseVersion = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> db;</span><br><span class="line"><span class="keyword">var</span> objectStoreName = <span class="string">"objectStore1"</span>;</span><br><span class="line"><span class="keyword">var</span> storeDatas = [</span><br><span class="line">    &#123; <span class="attr">id</span>: <span class="string">"1"</span>, <span class="attr">name</span>: <span class="string">"张三"</span>, <span class="attr">age</span>: <span class="number">18</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">id</span>: <span class="string">"2"</span>, <span class="attr">name</span>: <span class="string">"李四"</span>, <span class="attr">age</span>: <span class="number">19</span> &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> request = <span class="built_in">window</span>.indexedDB.open(databaseName, databaseVersion);</span><br><span class="line"></span><br><span class="line">request.onsuccess = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"open success"</span>);</span><br><span class="line">    db = event.target.result;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将数据保存到新建的对象仓库</span></span><br><span class="line">    <span class="keyword">var</span> objectStore = db</span><br><span class="line">        .transaction([objectStoreName], <span class="string">"readwrite"</span>)</span><br><span class="line">        .objectStore(objectStoreName);</span><br><span class="line"></span><br><span class="line">    storeDatas.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">dataItem</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 添加一条数据</span></span><br><span class="line">        objectStore.add(dataItem);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="删除数据（删）"><a href="#删除数据（删）" class="headerlink" title="删除数据（删）"></a>删除数据（删）</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> databaseName = <span class="string">"MyTestDatabase"</span>;</span><br><span class="line"><span class="keyword">var</span> databaseVersion = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> db;</span><br><span class="line"><span class="keyword">var</span> objectStoreName = <span class="string">"objectStore1"</span>;</span><br><span class="line"><span class="keyword">var</span> storeDatas = [</span><br><span class="line">    &#123; <span class="attr">id</span>: <span class="string">"1"</span>, <span class="attr">name</span>: <span class="string">"张三"</span>, <span class="attr">age</span>: <span class="number">18</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">id</span>: <span class="string">"2"</span>, <span class="attr">name</span>: <span class="string">"李四"</span>, <span class="attr">age</span>: <span class="number">19</span> &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> request = <span class="built_in">window</span>.indexedDB.open(databaseName, databaseVersion);</span><br><span class="line"></span><br><span class="line">request.onsuccess = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"open success"</span>);</span><br><span class="line">    db = event.target.result;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"删除数据"</span>);</span><br><span class="line">    <span class="keyword">var</span> req = db</span><br><span class="line">        .transaction([objectStoreName], <span class="string">"readwrite"</span>)</span><br><span class="line">        .objectStore(objectStoreName)</span><br><span class="line">        .delete(<span class="string">"2"</span>); <span class="comment">// 这里的“2”指定的是主键的键值</span></span><br><span class="line"></span><br><span class="line">    req.onsuccess = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"删除成功"</span>);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    req.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"删除失败"</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="修改数据（改）"><a href="#修改数据（改）" class="headerlink" title="修改数据（改）"></a>修改数据（改）</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"更新数据"</span>);</span><br><span class="line"><span class="keyword">var</span> req = db</span><br><span class="line">    .transaction([objectStoreName], <span class="string">"readwrite"</span>)</span><br><span class="line">    .objectStore(objectStoreName)</span><br><span class="line">    .put(&#123;</span><br><span class="line">        id: <span class="string">"2"</span>,</span><br><span class="line">        name: <span class="string">"王五"</span>,</span><br><span class="line">        age: <span class="number">17</span></span><br><span class="line">    &#125;); <span class="comment">// 将整条数据给替换</span></span><br><span class="line"></span><br><span class="line">req.onsuccess = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"更新成功"</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">req.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"更新失败"</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="获取数据（查）"><a href="#获取数据（查）" class="headerlink" title="获取数据（查）"></a>获取数据（查）</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"读取数据"</span>);</span><br><span class="line"><span class="keyword">var</span> req = db</span><br><span class="line">    .transaction([objectStoreName], <span class="string">"readonly"</span>)</span><br><span class="line">    .objectStore(objectStoreName)</span><br><span class="line">    .get(<span class="string">"1"</span>); <span class="comment">// 这里的“1”也是主键的键值</span></span><br><span class="line"></span><br><span class="line">req.onsuccess = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"获取成功"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(req.result);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">req.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"获取失败"</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="通过指针对象遍历表格数据"><a href="#通过指针对象遍历表格数据" class="headerlink" title="通过指针对象遍历表格数据"></a>通过指针对象遍历表格数据</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"遍历数据"</span>);</span><br><span class="line"><span class="keyword">var</span> objectStore = db</span><br><span class="line">    .transaction([objectStoreName], <span class="string">"readonly"</span>)</span><br><span class="line">    .objectStore(objectStoreName);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> count = <span class="number">0</span>;</span><br><span class="line">objectStore.openCursor().onsuccess = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> cursor = event.target.result;</span><br><span class="line">    <span class="keyword">if</span> (cursor) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`第<span class="subst">$&#123;++count&#125;</span>条数据为`</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(cursor.value);</span><br><span class="line">        cursor.continue(); <span class="comment">// 将指针移动下一个位置</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"没有更多数据"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>indexedDB的API还是非常多的，这里只是简单介绍了最常用的几个操作（个人认为^_^）。</p>
+<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API" target="_blank" rel="noopener">IndexedDB_API</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2018/07/indexeddb.html" target="_blank" rel="noopener">浏览器数据库 IndexedDB 入门教程</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/13/webpack配置工程师（一）：基本篇/" rel="next" title="webpack配置工程师（一）：基本篇">
+                <i class="fa fa-chevron-left"></i> webpack配置工程师（一）：基本篇
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTkxNS8xMjQ1MQ"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="SuperluminalSnails" />
+          <p class="site-author-name" itemprop="name">SuperluminalSnails</p>
+           
+              <p class="site-description motion-element" itemprop="description">知行合一</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本概念"><span class="nav-number">2.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本操作"><span class="nav-number">3.</span> <span class="nav-text">基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#兼容性注意点"><span class="nav-number">3.1.</span> <span class="nav-text">兼容性注意点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库操作"><span class="nav-number">3.2.</span> <span class="nav-text">数据库操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#打开-新建数据库"><span class="nav-number">3.2.1.</span> <span class="nav-text">打开/新建数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除数据库"><span class="nav-number">3.2.2.</span> <span class="nav-text">删除数据库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象仓库操作（表格操作）"><span class="nav-number">3.3.</span> <span class="nav-text">对象仓库操作（表格操作）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建表格"><span class="nav-number">3.3.1.</span> <span class="nav-text">创建表格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除表格"><span class="nav-number">3.3.2.</span> <span class="nav-text">删除表格</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据操作（行数据操作）"><span class="nav-number">3.4.</span> <span class="nav-text">数据操作（行数据操作）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#新增数据（增）"><span class="nav-number">3.4.1.</span> <span class="nav-text">新增数据（增）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除数据（删）"><span class="nav-number">3.4.2.</span> <span class="nav-text">删除数据（删）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改数据（改）"><span class="nav-number">3.4.3.</span> <span class="nav-text">修改数据（改）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取数据（查）"><span class="nav-number">3.4.4.</span> <span class="nav-text">获取数据（查）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过指针对象遍历表格数据"><span class="nav-number">3.4.5.</span> <span class="nav-text">通过指针对象遍历表格数据</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小结"><span class="nav-number">4.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文档"><span class="nav-number">5.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SuperluminalSnails</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("LuKMMR2xr1RBBi7n7J6MTWXk-gzGzoHsz", "c6dTw0KOwAoWlDeAyQjwg2Rq");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
