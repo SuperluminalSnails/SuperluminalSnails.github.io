@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="javascript," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -94,20 +94,17 @@
 
 
 
-<meta name="description" content="什么是浏览器的同源策略基本概念协议、域名、端口相同视为同源 以http://www.example.com/dir/page.html为例子  http（协议） www.example.com（域名） 80（默认端口）  非同源限制 Cookie、LocalStorage 和 IndexDB 无法读取 DOM 无法获得（获得的HTML都不同） AJAX 请求不能发送">
-<meta name="keywords" content="javascript">
+<meta name="description" content="什么是“函数柯里化” curry 的概念:只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数  先看一个简单例子，add函数接受 2 个参数（或者多个），addX函数接受 1 个参数。换而言之，所谓”柯里化”，就是把一个多参数的函数，转化为单参数函数。将一个函数转换为一个新的函数 123456789101112131415// 非柯里化function add(x, y) &amp;#123">
 <meta property="og:type" content="article">
-<meta property="og:title" content="同源、cookie、域名">
-<meta property="og:url" content="http://superluminalsnails.github.io/2018/01/12/同源、cookie、域名/index.html">
+<meta property="og:title" content="函数柯里化">
+<meta property="og:url" content="http://superluminalsnails.github.io/2019/02/18/函数柯里化/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="什么是浏览器的同源策略基本概念协议、域名、端口相同视为同源 以http://www.example.com/dir/page.html为例子  http（协议） www.example.com（域名） 80（默认端口）  非同源限制 Cookie、LocalStorage 和 IndexDB 无法读取 DOM 无法获得（获得的HTML都不同） AJAX 请求不能发送">
+<meta property="og:description" content="什么是“函数柯里化” curry 的概念:只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数  先看一个简单例子，add函数接受 2 个参数（或者多个），addX函数接受 1 个参数。换而言之，所谓”柯里化”，就是把一个多参数的函数，转化为单参数函数。将一个函数转换为一个新的函数 123456789101112131415// 非柯里化function add(x, y) &amp;#123">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://sfault-image.b0.upaiyun.com/188/636/1886365881-5a587d362df5f_articlex">
-<meta property="og:updated_time" content="2018-04-25T16:43:14.043Z">
+<meta property="og:updated_time" content="2019-02-19T04:25:06.782Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="同源、cookie、域名">
-<meta name="twitter:description" content="什么是浏览器的同源策略基本概念协议、域名、端口相同视为同源 以http://www.example.com/dir/page.html为例子  http（协议） www.example.com（域名） 80（默认端口）  非同源限制 Cookie、LocalStorage 和 IndexDB 无法读取 DOM 无法获得（获得的HTML都不同） AJAX 请求不能发送">
-<meta name="twitter:image" content="https://sfault-image.b0.upaiyun.com/188/636/1886365881-5a587d362df5f_articlex">
+<meta name="twitter:title" content="函数柯里化">
+<meta name="twitter:description" content="什么是“函数柯里化” curry 的概念:只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数  先看一个简单例子，add函数接受 2 个参数（或者多个），addX函数接受 1 个参数。换而言之，所谓”柯里化”，就是把一个多参数的函数，转化为单参数函数。将一个函数转换为一个新的函数 123456789101112131415// 非柯里化function add(x, y) &amp;#123">
 
 
 
@@ -136,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://superluminalsnails.github.io/2018/01/12/同源、cookie、域名/"/>
+  <link rel="canonical" href="http://superluminalsnails.github.io/2019/02/18/函数柯里化/"/>
 
 
 
 
 
-  <title>同源、cookie、域名 | Blog</title>
+  <title>函数柯里化 | Blog</title>
   
 
 
@@ -285,7 +282,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://superluminalsnails.github.io/2018/01/12/同源、cookie、域名/">
+    <link itemprop="mainEntityOfPage" href="http://superluminalsnails.github.io/2019/02/18/函数柯里化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SuperluminalSnails">
@@ -302,7 +299,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">同源、cookie、域名</h1>
+          <h1 class="post-title" itemprop="name headline">函数柯里化</h1>
         
 
         <div class="post-meta">
@@ -314,8 +311,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T12:44:48+08:00">
-                2018-01-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-18T15:42:59+08:00">
+                2019-02-18
               </time>
             
 
@@ -332,7 +329,7 @@
 
           
           
-             <span id="/2018/01/12/同源、cookie、域名/" class="leancloud_visitors" data-flag-title="同源、cookie、域名">
+             <span id="/2019/02/18/函数柯里化/" class="leancloud_visitors" data-flag-title="函数柯里化">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -363,53 +360,37 @@
       
 
       
-        <h1 id="什么是浏览器的同源策略"><a href="#什么是浏览器的同源策略" class="headerlink" title="什么是浏览器的同源策略"></a>什么是浏览器的同源策略</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>协议、域名、端口相同视为同源</p>
-<p>以<code>http://www.example.com/dir/page.html</code>为例子</p>
-<ul>
-<li>http（协议）</li>
-<li><a href="http://www.example.com（域名）" target="_blank" rel="noopener">www.example.com（域名）</a></li>
-<li>80（默认端口）</li>
-</ul>
-<h2 id="非同源限制"><a href="#非同源限制" class="headerlink" title="非同源限制"></a>非同源限制</h2><ul>
-<li>Cookie、LocalStorage 和 IndexDB 无法读取</li>
-<li>DOM 无法获得（获得的HTML都不同）</li>
-<li>AJAX 请求不能发送</li>
-</ul>
+        <h1 id="什么是“函数柯里化”"><a href="#什么是“函数柯里化”" class="headerlink" title="什么是“函数柯里化”"></a>什么是“函数柯里化”</h1><blockquote>
+<p>curry 的概念:只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数</p>
+</blockquote>
+<p>先看一个简单例子，<code>add</code>函数接受 2 个参数（或者多个），<code>addX</code>函数接受 1 个参数。<br>换而言之，<strong>所谓”柯里化”，就是把一个多参数的函数，转化为单参数函数。</strong>将一个函数转换为一个新的函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 非柯里化</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">add(<span class="number">1</span>, <span class="number">2</span>) === <span class="number">3</span>; <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 柯里化</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addX</span>(<span class="params">y</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x + y;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">addX(<span class="number">2</span>)(<span class="number">1</span>) == <span class="number">3</span>; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<h1 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h1><blockquote>
-<p>Cookie（复数形态Cookies），中文名称为“小型文字档案”或“小甜饼”，指某些网站为了辨别用户身份而储存在用户本地终端（Client Side）上的数据（通常经过加密）。定义于RFC2109。是网景公司的前雇员卢·蒙特利在1993年3月的发明。</p>
-</blockquote>
-<blockquote>
-<p>同源的网页才能共享。但是，两个网页一级域名相同，只是二级域名不同，浏览器允许通过设置document.domain共享 Cookie。</p>
-</blockquote>
-<p>例：网页1是<code>http://w1.example.com/1.html</code>，网页2是<code>http://w2.example.com/2.html</code>，设置相同的document.domain，两个网页就可以共享Cookie。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.domain = &apos;example.com&apos;;</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>服务器也可以在设置Cookie的时候，指定Cookie的所属域名为一级域名，比如.example.com。<br>这样的话，二级域名和三级域名不用做任何设置，都可以读取这个Cookie。<br>et-Cookie: key=value; domain=.example.com; path=/</p>
-</blockquote>
-<p><img src="https://sfault-image.b0.upaiyun.com/188/636/1886365881-5a587d362df5f_articlex" alt="clipboard.png"></p>
-<h1 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><blockquote>
-<p>网域名称（英语：Domain Name），简称域名、网域，是由一串用点分隔的名字组成的Internet上某一台计算机或计算机组的名称，用于在数据传输时标识计算机的电子方位（有时也指地理位置）。</p>
-</blockquote>
-<p>例子：<a href="http://www.ncic.ac.cn，每一级域名由英文半角句号分割。" target="_blank" rel="noopener">www.ncic.ac.cn，每一级域名由英文半角句号分割。</a></p>
+<h1 id="柯里化的好处"><a href="#柯里化的好处" class="headerlink" title="柯里化的好处"></a>柯里化的好处</h1><p>我能想到的是：</p>
 <ul>
-<li>cn（顶级域名||一级域名）</li>
-<li>ac（二级域名）</li>
-<li>ncic（三级域名）</li>
-<li>www（www前缀表明此域名对应着万维网服务）</li>
+<li>代码复用，减少维护成本</li>
+<li>尽可能的函数化，便于阅读</li>
 </ul>
 <blockquote>
-<p>“ncic”作为三级域名是“ac.cn”的子域名。</p>
+<p>“函数式编程”是一种”编程范式”（programming paradigm），也就是如何编写程序的方法论。</p>
 </blockquote>
-<h2 id="常用顶级域名"><a href="#常用顶级域名" class="headerlink" title="常用顶级域名"></a>常用顶级域名</h2><ul>
-<li>.com - 供商业机构使用，但无限制最常用，被大部分人熟悉和使用</li>
-<li>.net - 1985年1月，原供网络服务供应商使用，现无限制</li>
-<li>.org - 1985年1月，原供不属于其他通用顶级域类别的组织使用，现无限制</li>
-<li>.edu / .gov / .mil - 1985年1月，供美国教育机构／美国政府机关／美国军事机构。因历史遗留问题一般只在美国专用</li>
+<p>所以，不用想太多，就是一种规范一样的东西~ ~</p>
+<h1 id="如何实现柯里化函数-curry"><a href="#如何实现柯里化函数-curry" class="headerlink" title="如何实现柯里化函数 curry"></a>如何实现柯里化函数 curry</h1><p>先来看一个栗子（这里借助了<code>ramda</code>，请自行安装)，在下面的栗子中我们对 add 进行了柯里化，从结果上可以看到当参数为 1 个时返回的是个函数，当参数为 2 个的时候返回函数，当参数为 3 个的时候返回<code>函数执行结果</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> _ = <span class="built_in">require</span>(<span class="string">"ramda"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span>(<span class="params">a, b, c</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a, b, c;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> curry_add = _.curry(add);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(curry_add(<span class="number">1</span>)); <span class="comment">// 输出函数</span></span><br><span class="line"><span class="built_in">console</span>.log(curry_add(<span class="number">1</span>)(<span class="number">2</span>)); <span class="comment">// 输出函数</span></span><br><span class="line"><span class="built_in">console</span>.log(curry_add(<span class="number">1</span>)(<span class="number">2</span>)(<span class="number">3</span>)); <span class="comment">// 输出结果</span></span><br></pre></td></tr></table></figure>
+<p>根据上述的小栗子，可以得到，<code>柯里化后的函数</code>如果接受到全部参数则返回<code>函数执行结果</code>，否则返回<code>一个柯里化函数</code>。</p>
+<p>很容易想到以下伪代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> curry = <span class="function"><span class="keyword">function</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 假设柯里化的函数叫 curry_fn</span></span><br><span class="line">        <span class="comment">// if "curry_fn接受到的参数数量等于fn接受参数的数量"</span></span><br><span class="line">        <span class="comment">// return "fn的执行结果"</span></span><br><span class="line">        <span class="comment">// else return "一个柯里化函数"</span></span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>上述伪代码是不是很像递归？</p>
+<ul>
+<li>递归出口：curry_fn接受到的参数数量等于fn接受参数的数量</li>
+<li>重复逻辑：return “一个柯里化函数”</li>
 </ul>
+<p>于是有了以下简单实现柯里化的代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> curry = <span class="function"><span class="keyword">function</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> limit = fn.length; <span class="comment">// fn接受的参数个数</span></span><br><span class="line">    <span class="keyword">var</span> params = []; <span class="comment">// 存储递归过程的所有参数，用于递归出口计算值</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">_curry</span>(<span class="params">...args</span>) </span>&#123;</span><br><span class="line">        params = params.concat(args); <span class="comment">// 收集递归参数</span></span><br><span class="line">        <span class="keyword">if</span> (limit &lt;= params.length) &#123;</span><br><span class="line">            <span class="comment">// 返回函数执行结果</span></span><br><span class="line">            <span class="keyword">return</span> fn.apply(<span class="literal">null</span>, params);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 返回一个柯里化函数</span></span><br><span class="line">            <span class="keyword">return</span> _curry;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li><a href="http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html</a></li>
-<li><a href="https://www.wikiwand.com/zh-hans/Cookie" target="_blank" rel="noopener">https://www.wikiwand.com/zh-hans/Cookie</a></li>
-<li><a href="https://www.wikiwand.com/zh-hans/%E5%9F%9F%E5%90%8D" target="_blank" rel="noopener">https://www.wikiwand.com/zh-hans/%E5%9F%9F%E5%90%8D</a></li>
+<li><a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html#%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8F%8C%E5%85%B3%E8%AF%AD%E5%92%96%E5%96%B1" target="_blank" rel="noopener">JS函数式编程指南</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2017/02/fp-tutorial.html" target="_blank" rel="noopener">函数式编程入门教程</a></li>
+<li><a href="https://segmentfault.com/a/1190000008248646" target="_blank" rel="noopener">一行写出javascript函数式编程中的curry</a></li>
 </ul>
 
       
@@ -426,12 +407,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/javascript/" rel="tag"># javascript</a>
-          
-        </div>
-      
 
       
       
@@ -441,8 +416,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/04/搭建简单的伪热更新Mock服务/" rel="next" title="搭建简单的伪热更新Mock服务">
-                <i class="fa fa-chevron-left"></i> 搭建简单的伪热更新Mock服务
+              <a href="/2019/02/13/indexedDB入门/" rel="next" title="indexedDB入门">
+                <i class="fa fa-chevron-left"></i> indexedDB入门
               </a>
             
           </div>
@@ -450,10 +425,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/24/css垂直居中总结/" rel="prev" title="css垂直居中布局总结">
-                css垂直居中布局总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -580,7 +551,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是浏览器的同源策略"><span class="nav-number">1.</span> <span class="nav-text">什么是浏览器的同源策略</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非同源限制"><span class="nav-number">1.2.</span> <span class="nav-text">非同源限制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cookie"><span class="nav-number">2.</span> <span class="nav-text">cookie</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#域名"><span class="nav-number">3.</span> <span class="nav-text">域名</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">3.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用顶级域名"><span class="nav-number">3.2.</span> <span class="nav-text">常用顶级域名</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是“函数柯里化”"><span class="nav-number">1.</span> <span class="nav-text">什么是“函数柯里化”</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#柯里化的好处"><span class="nav-number">2.</span> <span class="nav-text">柯里化的好处</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何实现柯里化函数-curry"><span class="nav-number">3.</span> <span class="nav-text">如何实现柯里化函数 curry</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
