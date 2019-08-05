@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="javascript," />
 
 
 
@@ -94,17 +94,18 @@
 
 
 
-<meta name="description" content="什么是“函数柯里化” curry 的概念:只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数  先看一个简单例子，add函数接受 2 个参数（或者多个），addX函数接受 1 个参数。换而言之，所谓”柯里化”，就是把一个多参数的函数，转化为单参数函数。将一个函数转换为一个新的函数 123456789101112131415// 非柯里化function add(x, y) &amp;#123">
+<meta name="description" content="原文链接：https://medium.com/better-programming/hoisting-in-javascript-6af97650dbb2  如果你是萌新，”变量提升”在JavaScript是一个难以理解的知识点。它几乎困惑了所有人。不要担心，我将会帮助你理解在JavaScript中”变量提升”工作机制。 什么是变量提升？“变量提升”是移动所有定义到当前作用域顶部的JavaSc">
+<meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="函数柯里化">
-<meta property="og:url" content="http://superluminalsnails.github.io/2019/02/18/函数柯里化/index.html">
+<meta property="og:title" content="理解JavaScript的变量提升（译）">
+<meta property="og:url" content="http://superluminalsnails.github.io/2019/08/05/理解JavaScript的变量提升（译）/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="什么是“函数柯里化” curry 的概念:只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数  先看一个简单例子，add函数接受 2 个参数（或者多个），addX函数接受 1 个参数。换而言之，所谓”柯里化”，就是把一个多参数的函数，转化为单参数函数。将一个函数转换为一个新的函数 123456789101112131415// 非柯里化function add(x, y) &amp;#123">
+<meta property="og:description" content="原文链接：https://medium.com/better-programming/hoisting-in-javascript-6af97650dbb2  如果你是萌新，”变量提升”在JavaScript是一个难以理解的知识点。它几乎困惑了所有人。不要担心，我将会帮助你理解在JavaScript中”变量提升”工作机制。 什么是变量提升？“变量提升”是移动所有定义到当前作用域顶部的JavaSc">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-19T04:25:06.782Z">
+<meta property="og:updated_time" content="2019-08-05T16:37:21.802Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="函数柯里化">
-<meta name="twitter:description" content="什么是“函数柯里化” curry 的概念:只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数  先看一个简单例子，add函数接受 2 个参数（或者多个），addX函数接受 1 个参数。换而言之，所谓”柯里化”，就是把一个多参数的函数，转化为单参数函数。将一个函数转换为一个新的函数 123456789101112131415// 非柯里化function add(x, y) &amp;#123">
+<meta name="twitter:title" content="理解JavaScript的变量提升（译）">
+<meta name="twitter:description" content="原文链接：https://medium.com/better-programming/hoisting-in-javascript-6af97650dbb2  如果你是萌新，”变量提升”在JavaScript是一个难以理解的知识点。它几乎困惑了所有人。不要担心，我将会帮助你理解在JavaScript中”变量提升”工作机制。 什么是变量提升？“变量提升”是移动所有定义到当前作用域顶部的JavaSc">
 
 
 
@@ -133,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://superluminalsnails.github.io/2019/02/18/函数柯里化/"/>
+  <link rel="canonical" href="http://superluminalsnails.github.io/2019/08/05/理解JavaScript的变量提升（译）/"/>
 
 
 
 
 
-  <title>函数柯里化 | Blog</title>
+  <title>理解JavaScript的变量提升（译） | Blog</title>
   
 
 
@@ -282,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://superluminalsnails.github.io/2019/02/18/函数柯里化/">
+    <link itemprop="mainEntityOfPage" href="http://superluminalsnails.github.io/2019/08/05/理解JavaScript的变量提升（译）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SuperluminalSnails">
@@ -299,7 +300,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">函数柯里化</h1>
+          <h1 class="post-title" itemprop="name headline">理解JavaScript的变量提升（译）</h1>
         
 
         <div class="post-meta">
@@ -311,8 +312,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-18T15:42:59+08:00">
-                2019-02-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-05T23:06:37+08:00">
+                2019-08-05
               </time>
             
 
@@ -329,7 +330,7 @@
 
           
           
-             <span id="/2019/02/18/函数柯里化/" class="leancloud_visitors" data-flag-title="函数柯里化">
+             <span id="/2019/08/05/理解JavaScript的变量提升（译）/" class="leancloud_visitors" data-flag-title="理解JavaScript的变量提升（译）">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -360,38 +361,40 @@
       
 
       
-        <h1 id="什么是“函数柯里化”"><a href="#什么是“函数柯里化”" class="headerlink" title="什么是“函数柯里化”"></a>什么是“函数柯里化”</h1><blockquote>
-<p>curry 的概念:只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数</p>
+        <blockquote>
+<p>原文链接：<a href="https://medium.com/better-programming/hoisting-in-javascript-6af97650dbb2" target="_blank" rel="noopener">https://medium.com/better-programming/hoisting-in-javascript-6af97650dbb2</a></p>
 </blockquote>
-<p>先看一个简单例子，<code>add</code>函数接受 2 个参数（或者多个），<code>addX</code>函数接受 1 个参数。<br>换而言之，<strong>所谓”柯里化”，就是把一个多参数的函数，转化为单参数函数。</strong>将一个函数转换为一个新的函数</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 非柯里化</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">add(<span class="number">1</span>, <span class="number">2</span>) === <span class="number">3</span>; <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 柯里化</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addX</span>(<span class="params">y</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x + y;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">addX(<span class="number">2</span>)(<span class="number">1</span>) == <span class="number">3</span>; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h1 id="柯里化的好处"><a href="#柯里化的好处" class="headerlink" title="柯里化的好处"></a>柯里化的好处</h1><p>我能想到的是：</p>
+<p>如果你是萌新，”变量提升”在JavaScript是一个难以理解的知识点。它几乎困惑了所有人。不要担心，我将会帮助你理解在JavaScript中”变量提升”工作机制。</p>
+<h1 id="什么是变量提升？"><a href="#什么是变量提升？" class="headerlink" title="什么是变量提升？"></a>什么是变量提升？</h1><p>“变量提升”是移动所有定义到当前作用域顶部的JavaScript默认行为。</p>
+<p>JavaScript<strong>没有提升</strong>以下项目：</p>
 <ul>
-<li>代码复用，减少维护成本</li>
-<li>尽可能的函数化，便于阅读</li>
+<li>1.用表达式定义的函数</li>
+<li>2.用<strong>let</strong>或者<strong>const</strong>定义的变量和常量</li>
+<li>3.箭头函数</li>
 </ul>
+<p>在JavaScript中，一个变量可以被使用在它被定义之前。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">5</span>;</span><br><span class="line"><span class="built_in">console</span>.log(x * <span class="number">2</span>); <span class="comment">// Prints 10 in the console</span></span><br><span class="line"><span class="keyword">var</span> x;</span><br></pre></td></tr></table></figure>
+<p>好的…，但这是什么意思？我没有理解你要说的。</p>
+<p>让我来通过几个新例子帮助你理解</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Example 1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">7</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> bar();</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">11</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(foo()); <span class="comment">// Prints 11</span></span><br></pre></td></tr></table></figure>
+<p>当一个函数定义被提升的时候整个函数体将被提升。因此解释完成第一个示例代码之后，它更像这样运行：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">unction foo()&#123;</span><br><span class="line">    <span class="comment">//define bar once</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">7</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//redefine it</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">11</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//return its invocation</span></span><br><span class="line">    <span class="keyword">return</span> bar();</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(foo());</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>“函数式编程”是一种”编程范式”（programming paradigm），也就是如何编写程序的方法论。</p>
+<p>But… isn’t the code after a return statement unreachable?(这句有点看不懂)</p>
 </blockquote>
-<p>所以，不用想太多，就是一种规范一样的东西~ ~</p>
-<h1 id="如何实现柯里化函数-curry"><a href="#如何实现柯里化函数-curry" class="headerlink" title="如何实现柯里化函数 curry"></a>如何实现柯里化函数 curry</h1><p>先来看一个栗子（这里借助了<code>ramda</code>，请自行安装)，在下面的栗子中我们对 add 进行了柯里化，从结果上可以看到当参数为 1 个时返回的是个函数，当参数为 2 个的时候返回函数，当参数为 3 个的时候返回<code>函数执行结果</code>。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> _ = <span class="built_in">require</span>(<span class="string">"ramda"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span>(<span class="params">a, b, c</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a, b, c;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> curry_add = _.curry(add);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(curry_add(<span class="number">1</span>)); <span class="comment">// 输出函数</span></span><br><span class="line"><span class="built_in">console</span>.log(curry_add(<span class="number">1</span>)(<span class="number">2</span>)); <span class="comment">// 输出函数</span></span><br><span class="line"><span class="built_in">console</span>.log(curry_add(<span class="number">1</span>)(<span class="number">2</span>)(<span class="number">3</span>)); <span class="comment">// 输出结果</span></span><br></pre></td></tr></table></figure>
-<p>根据上述的小栗子，可以得到，<code>柯里化后的函数</code>如果接受到全部参数则返回<code>函数执行结果</code>，否则返回<code>一个柯里化函数</code>。</p>
-<p>很容易想到以下伪代码</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> curry = <span class="function"><span class="keyword">function</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 假设柯里化的函数叫 curry_fn</span></span><br><span class="line">        <span class="comment">// if "curry_fn接受到的参数数量等于fn接受参数的数量"</span></span><br><span class="line">        <span class="comment">// return "fn的执行结果"</span></span><br><span class="line">        <span class="comment">// else return "一个柯里化函数"</span></span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>上述伪代码是不是很像递归？</p>
-<ul>
-<li>递归出口：curry_fn接受到的参数数量等于fn接受参数的数量</li>
-<li>重复逻辑：return “一个柯里化函数”</li>
-</ul>
-<p>于是有了以下简单实现柯里化的代码</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> curry = <span class="function"><span class="keyword">function</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> limit = fn.length; <span class="comment">// fn接受的参数个数</span></span><br><span class="line">    <span class="keyword">var</span> params = []; <span class="comment">// 存储递归过程的所有参数，用于递归出口计算值</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">_curry</span>(<span class="params">...args</span>) </span>&#123;</span><br><span class="line">        params = params.concat(args); <span class="comment">// 收集递归参数</span></span><br><span class="line">        <span class="keyword">if</span> (limit &lt;= params.length) &#123;</span><br><span class="line">            <span class="comment">// 返回函数执行结果</span></span><br><span class="line">            <span class="keyword">return</span> fn.apply(<span class="literal">null</span>, params);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 返回一个柯里化函数</span></span><br><span class="line">            <span class="keyword">return</span> _curry;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li><a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html#%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E5%8F%8C%E5%85%B3%E8%AF%AD%E5%92%96%E5%96%B1" target="_blank" rel="noopener">JS函数式编程指南</a></li>
-<li><a href="http://www.ruanyifeng.com/blog/2017/02/fp-tutorial.html" target="_blank" rel="noopener">函数式编程入门教程</a></li>
-<li><a href="https://segmentfault.com/a/1190000008248646" target="_blank" rel="noopener">一行写出javascript函数式编程中的curry</a></li>
-</ul>
+<p>在JavaScript执行中，有<strong>上下文</strong>( ECMA 5 分为词法环境，变量环境，和绑定this指针)和进程(一组按顺序调用的语句)。当进入执行作用域时，定义贡献<strong>变量环境</strong>。它与语句不同的是它不受进程规则的限制。</p>
+<p>让我们再看一个例子，这次是一个函数表达式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Example 2</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> bar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">7</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> bar();</span><br><span class="line">    <span class="keyword">var</span> bar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">11</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(foo()); <span class="comment">// Prints 7</span></span><br></pre></td></tr></table></figure>
+<p>注意到当变量被创建时初始化是undefined。具有”初始值”的变量实在执行时分配表达式的值，而不是变量被创建的时候。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myFunction = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="comment">// some executable code</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上面的代码片段中，左边的<strong>var myFunction</strong>是一个变量声明定义。</p>
+<p>变量声明得到提升，但是他的分配表达式没有提升。所以，当<strong>myFunction</strong>被提升的时候，解释器初始化设置<strong>var myFunction = undefined</strong>。函数定义没有提升。</p>
+<p>记住上面所有的知识点，然后让我们来看下例2如何工作的。</p>
+<p>它运行就像这样：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> bar = <span class="literal">undefined</span>; <span class="comment">// declaration for first function expression</span></span><br><span class="line">    <span class="keyword">var</span> bar = <span class="literal">undefined</span>; <span class="comment">// declaration for second function expression</span></span><br><span class="line">    <span class="comment">//first function expression is executed</span></span><br><span class="line">    bar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">7</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> bar(); <span class="comment">// function created by first function expression is invoked</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(foo()); <span class="comment">// Prints 7</span></span><br></pre></td></tr></table></figure>
+<p>在调用第一个函数表达式后，第二个函数表达式无法访问。</p>
+<h1 id="在顶部声明你的变量以免混乱"><a href="#在顶部声明你的变量以免混乱" class="headerlink" title="在顶部声明你的变量以免混乱"></a>在顶部声明你的变量以免混乱</h1><p>变量提升非常有趣但它可能会导致bug，因为十分容易被忽略。</p>
+<p>你可以使用<strong>严格模式</strong>，在顶部使用<strong>use strict</strong>指令。JavaScript严格模式下不允许使用还没有定义的变量。</p>
 
       
     </div>
@@ -407,6 +410,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
 
       
       
@@ -416,8 +425,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/13/indexedDB入门/" rel="next" title="indexedDB入门">
-                <i class="fa fa-chevron-left"></i> indexedDB入门
+              <a href="/2019/02/18/函数柯里化/" rel="next" title="函数柯里化">
+                <i class="fa fa-chevron-left"></i> 函数柯里化
               </a>
             
           </div>
@@ -425,10 +434,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/05/理解JavaScript的变量提升（译）/" rel="prev" title="理解JavaScript的变量提升（译）">
-                理解JavaScript的变量提升（译） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -555,7 +560,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是“函数柯里化”"><span class="nav-number">1.</span> <span class="nav-text">什么是“函数柯里化”</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#柯里化的好处"><span class="nav-number">2.</span> <span class="nav-text">柯里化的好处</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何实现柯里化函数-curry"><span class="nav-number">3.</span> <span class="nav-text">如何实现柯里化函数 curry</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是变量提升？"><span class="nav-number">1.</span> <span class="nav-text">什么是变量提升？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在顶部声明你的变量以免混乱"><span class="nav-number">2.</span> <span class="nav-text">在顶部声明你的变量以免混乱</span></a></li></ol></div>
             
 
           </div>
